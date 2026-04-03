@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <!--
+        noupdate="1": la categoria e il gruppo vengono creati una volta sola
+        durante l'installazione e non vengono sovrascritti dagli aggiornamenti
+        successivi del modulo, preservando eventuali utenti assegnati.
+    -->
+    <data noupdate="1">
  
         <record id="module_category_building_pay" model="ir.module.category">
             <field name="name">BuildingPay</field>
