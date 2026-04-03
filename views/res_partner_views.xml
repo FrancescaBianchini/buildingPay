@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_building_pay" model="ir.ui.view">
+            <field name="name">res.partner.form.building_pay</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="BuildingPay" name="page_building_pay">
+
+                        <group string="Indirizzo di Fatturazione">
+                            <group>
+                                <field name="x_building_pay_contratto"
+                                       widget="binary"
+                                       filename="x_building_pay_contratto_filename"/>
+                                <field name="x_building_pay_contratto_filename"
+                                       invisible="1"/>
+                                <field name="x_building_pay_contratto_caricato"
+                                       readonly="1"/>
+                                <field name="x_building_pay_iban"/>
+                            </group>
+                            <group>
+                                <!-- Modificabile solo dal Building Pay Manager -->
+                                <field name="x_building_pay_abilitato"
+                                       groups="building_pay.group_building_pay_manager"/>
+                                <!-- Sola lettura per tutti gli altri -->
+                                <field name="x_building_pay_abilitato"
+                                       readonly="1"
+                                       groups="!building_pay.group_building_pay_manager"/>
+                            </group>
+                        </group>
+
+                        <group string="Accordo Portale"
+                               attrs="{'invisible': [('parent_id', '!=', False)]}">
+                            <field name="x_building_pay_accordo"
+                                   widget="binary"
+                                   filename="x_building_pay_accordo_filename"/>
+                            <field name="x_building_pay_accordo_filename"
+                                   invisible="1"/>
+                        </group>
+
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

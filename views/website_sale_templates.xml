@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        1. CHECKOUT — banner avviso se l'accordo contrattuale non è caricato.
+    -->
+    <template id="checkout_building_pay_accordo_warning"
+              inherit_id="website_sale.checkout"
+              name="BuildingPay - Avviso accordo mancante nel checkout">
+
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="before">
+            <t t-if="not request.env.user._is_public()
+                     and not request.env.user.partner_id.x_building_pay_accordo">
+                <div class="alert alert-danger d-flex align-items-center mb-3" role="alert">
+                    <i class="fa fa-ban fa-lg me-3 flex-shrink-0"/>
+                    <div>
+                        <strong>Acquisto non disponibile.</strong>
+                        Devi caricare l'
+                        <strong>Accordo contrattuale con Progetti e Soluzioni</strong>
+                        nel tuo profilo prima di poter completare un ordine.
+                        <a href="/my/account" class="alert-link ms-1">
+                            Vai al profilo →
+                        </a>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+
+    </template>
+
+
+    <!--
+        2. CHECKOUT — avviso se nessun indirizzo BuildingPay è disponibile.
+           Il qcontext building_pay_billing_addresses viene iniettato
+           dal controller WebsiteSaleBuildingPay.
+    -->
+    <template id="checkout_building_pay_no_address_warning"
+              inherit_id="website_sale.checkout"
+              name="BuildingPay - Avviso nessun indirizzo abilitato">
+
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="before">
+            <t t-if="building_pay_billing_addresses is not None
+                     and not building_pay_billing_addresses
+                     and not request.env.user._is_public()">
+                <div class="alert alert-warning d-flex align-items-center mb-3" role="alert">
+                    <i class="fa fa-exclamation-triangle fa-lg me-3 flex-shrink-0"/>
+                    <div>
+                        <strong>Nessun indirizzo di fatturazione abilitato.</strong>
+                        Aggiungi un indirizzo dal profilo e contatta l'amministratore
+                        per richiederel'abilitazione al servizio BuildingPay.
+                        <a href="/my/account" class="alert-link ms-1">
+                            Gestisci indirizzi →
+                        </a>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>
