@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+ 
+        <record id="module_category_building_pay" model="ir.module.category">
+            <field name="name">BuildingPay</field>
+            <field name="description">Gestione del servizio BuildingPay</field>
+            <field name="sequence">100</field>
+        </record>
+ 
+        <record id="group_building_pay_manager" model="res.groups">
+            <field name="name">Building Pay Manager</field>
+            <field name="category_id" ref="module_category_building_pay"/>
+            <field name="comment">
+                Gli utenti con questo ruolo possono abilitare o disabilitare
+                il servizio BuildingPay sugli indirizzi di fatturazione.
+            </field>
+        </record>
+ 
+    </data>
+</odoo>
+ 
