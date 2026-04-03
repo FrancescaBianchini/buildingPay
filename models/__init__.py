@@ -1,8 +1,6 @@
-
-Copia
-
 # -*- coding: utf-8 -*-
  
-from . import portal
-from . import website_sale
- 
+from . import res_partner_bank
+from . import res_partner
+from . import sale_order
+from . import account_move
