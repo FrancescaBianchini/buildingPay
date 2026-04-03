@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+    <!--
+        Override del report fattura: sostituisce partner_id.display_name
+        (che in Odoo mostra "Padre, Figlio" per i contatti figli)
+        con x_building_pay_partner_name che contiene solo il nome del figlio.
+ 
+        Agisce su entrambi i template standard di Odoo 17:
+        - account.report_invoice_document
+        - account.report_invoice_with_payments_document
+    -->
+ 
+    <template id="report_invoice_partner_name_building_pay"
+              inherit_id="account.report_invoice_document"
+              name="BuildingPay - Nome intestatario fattura">
+        <xpath expr="//span[@t-field='o.partner_id.display_name']" position="replace">
+            <span t-if="o.x_building_pay_partner_name"
+                  t-out="o.x_building_pay_partner_name"/>
+            <span t-else=""
+                  t-field="o.partner_id.display_name"/>
+        </xpath>
+    </template>
+ 
+    <template id="report_invoice_with_payments_partner_name_building_pay"
+              inherit_id="account.report_invoice_with_payments_document"
+              name="BuildingPay - Nome intestatario fattura (con pagamenti)">
+        <xpath expr="//span[@t-field='o.partner_id.display_name']" position="replace">
+            <span t-if="o.x_building_pay_partner_name"
+                  t-out="o.x_building_pay_partner_name"/>
+            <span t-else=""
+                  t-field="o.partner_id.display_name"/>
+        </xpath>
+    </template>
+ 
+</odoo>
