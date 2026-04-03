@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_bank_building_pay_manager,res.partner.bank building_pay manager,base.model_res_partner_bank,building_pay.group_building_pay_manager,1,1,1,1
+access_res_partner_bank_portal,res.partner.bank portal,base.model_res_partner_bank,base.group_portal,1,0,0,0
